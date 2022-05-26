@@ -19,9 +19,7 @@ class UsersRecyclerAdapter(private val usersList: Array<Profile>) :
     }
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
-        usersList.forEach {
-            holder.bindElements(it)
-        }
+        holder.bindElements(usersList[position])
     }
 
     override fun getItemCount(): Int {

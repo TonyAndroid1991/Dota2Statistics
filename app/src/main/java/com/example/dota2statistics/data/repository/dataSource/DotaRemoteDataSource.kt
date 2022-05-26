@@ -7,5 +7,5 @@ import retrofit2.Response
 interface DotaRemoteDataSource {
 
     suspend fun getPlayerByPersonaName(playerName: String): Response<List<PlayerByPersonaNameItem>>
-    suspend fun getPlayerByID(playerID: Long): Response<PlayerByID>
+    suspend fun getPlayerByID(playerID: Int): Response<PlayerByID>
 }

@@ -5,7 +5,7 @@ import com.example.dota2statistics.domain.repository.PlayersRepository
 
 class GetPlayerByIDUseCase(private val playersRepository: PlayersRepository) {
 
-    suspend fun getPlayerById(playerID: Long): Profile? {
+    suspend fun getPlayerById(playerID: Int): Profile? {
         return playersRepository.getPlayerByID(playerID)
     }
 }

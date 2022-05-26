@@ -11,8 +11,8 @@ class PlayersRepositoryTestDouble : PlayersRepository {
         return listOf(playerByPersonaNameItem)
     }
 
-    override suspend fun getPlayerByID(playerID: Long): Profile? {
-        return Profile(playerID as Int, "", "", "", 1111, "", false, "", "")
+    override suspend fun getPlayerByID(playerID: Int): Profile? {
+        return Profile(playerID as Int, "myAvatar", "", "", 1111, "", false, "", "")
     }
 
     override suspend fun savePlayerToDB(profile: Profile) {

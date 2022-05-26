@@ -13,7 +13,7 @@ class DotaRemoteDataSourceImpl(private val apiService: ApiService) : DotaRemoteD
         return apiService.getPlayerByPersonaName(playerName)
     }
 
-    override suspend fun getPlayerByID(playerID: Long): Response<PlayerByID> {
+    override suspend fun getPlayerByID(playerID: Int): Response<PlayerByID> {
         return apiService.getPlayerByAccountId(playerID)
     }
 

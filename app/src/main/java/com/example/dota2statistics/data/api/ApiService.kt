@@ -18,7 +18,7 @@ interface ApiService {
 
     @GET("players/{account_id}")
     suspend fun getPlayerByAccountId(
-        @Path("account_id") accountId: Long,
+        @Path("account_id") accountId: Int,
         @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Response<PlayerByID>
 

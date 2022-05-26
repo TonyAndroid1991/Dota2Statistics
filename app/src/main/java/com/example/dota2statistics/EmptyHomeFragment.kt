@@ -48,12 +48,15 @@ class EmptyHomeFragment : Fragment(R.layout.empty_home_fragment) {
             text.isEmpty() -> {
                 Toast.makeText(context, "You must input your User Name or User ID", LENGTH_LONG)
                     .show()
+                findNavController().navigate(
+                    R.id.action_emptyHomeFragment_to_selectUserFragment
+                )
             }
             TextUtils.isDigitsOnly(binding.userInput.text) -> {
-                emptyHomeViewModel.getPlayerProfileByID(text.toLong())
+                emptyHomeViewModel.getPlayerProfileByID(text.toInt())
                 emptyHomeViewModel.playerByIDLiveData.observe(viewLifecycleOwner) { profile ->
                     if (profile != null) {
-                        val profile =  arrayOf(profile)
+                        val profile = arrayOf(profile)
                         bundle = Bundle().apply {
                             putSerializable("user", profile)
                         }
@@ -68,7 +71,22 @@ class EmptyHomeFragment : Fragment(R.layout.empty_home_fragment) {
                 }
             }
             else -> {
-                emptyHomeViewModel.getPlayersList(text)
+                emptyHomeViewModel.getPlayersListByName(text)
+                emptyHomeViewModel.listOfPlayersByNameLiveData.observe(viewLifecycleOwner) { playersByName ->
+                    emptyHomeViewModel.getPlayersProfileByName(playersByName)
+                    emptyHomeViewModel.listOfProfilesByID.observe(viewLifecycleOwner) { profiles ->
+                        if (profiles != null) {
+                            val list: Array<Profile> = profiles.toTypedArray()
+                            bundle = Bundle().apply {
+                                putSerializable("user", list)
+                            }
+                            findNavController().navigate(
+                                R.id.action_emptyHomeFragment_to_selectUserFragment,
+                                bundle
+                            )
+                        }
+                    }
+                }
             }
         }
     }

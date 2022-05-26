@@ -27,9 +27,15 @@ class GetPlayerByIDUseCaseTest {
     }
 
     @Test
-    fun `get player with passed profile`() = runBlocking {
-        var profile =  sut.getPlayerById(1111111111111)
-        assertThat(profile?.accountId).isEqualTo(1111111111111 as Int)
+    fun `get player with passed profile ID`() = runBlocking {
+        var profile =  sut.getPlayerById(1111111111)
+        assertThat(profile?.accountId).isEqualTo(1111111111)
+    }
+
+    @Test
+    fun `get player avatar Name with passed profile ID`() = runBlocking {
+        var profile =  sut.getPlayerById(1111111111)
+        assertThat(profile?.avatar).isEqualTo("myAvatar")
     }
 
     @After

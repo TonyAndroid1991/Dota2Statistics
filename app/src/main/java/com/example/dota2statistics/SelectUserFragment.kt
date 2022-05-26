@@ -23,8 +23,8 @@ class SelectUserFragment : Fragment(R.layout.fragment_select_user) {
         Log.i("Profiles", "onViewCreated: ${profilesList[0].personaname} ================")
 
         binding.usersRecycler.apply {
-            layoutManager = LinearLayoutManager(activity)
             adapter = UsersRecyclerAdapter(profilesList)
+            layoutManager = LinearLayoutManager(activity)
         }
     }
 

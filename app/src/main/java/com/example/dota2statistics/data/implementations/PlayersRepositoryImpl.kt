@@ -23,11 +23,11 @@ class PlayersRepositoryImpl(
         }
     }
 
-    override suspend fun getPlayerByID(playerID: Long): Profile? {
+    override suspend fun getPlayerByID(playerID: Int): Profile? {
         return getPlayerByIDFromAPI(playerID)
     }
 
-    private suspend fun getPlayerByIDFromAPI(playerID: Long): Profile? {
+    private suspend fun getPlayerByIDFromAPI(playerID: Int): Profile? {
         val response = dotaRemoteDataSource.getPlayerByID(playerID)
         return response.body()?.let {
             it.profile

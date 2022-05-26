@@ -6,7 +6,7 @@ import com.example.dota2statistics.data.models.byPersonaName.PlayerByPersonaName
 interface PlayersRepository {
 
     suspend fun getPlayersByPersonaName(playerName: String): List<PlayerByPersonaNameItem>?
-    suspend fun getPlayerByID(playerID: Long): Profile?
+    suspend fun getPlayerByID(playerID: Int): Profile?
     suspend fun savePlayerToDB(profile: Profile)
     fun getPlayersFromDB(): Profile?
 }

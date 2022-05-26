@@ -21,6 +21,6 @@
         tools:layout="@layout/fragment_select_user" >
         <argument
             android:name="user"
-            app:argType="com.example.dota2statistics.data.models.byID.Profile[]" />
+            app:argType="com.example.dota2statistics.data.models.byID.Profile[]"/>
     </fragment>
 </navigation>
