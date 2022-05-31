@@ -2,15 +2,29 @@ package com.example.dota2statistics
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.dota2statistics.data.models.byID.Profile
 import com.example.dota2statistics.databinding.ItemUserProfileBinding
 
-class UsersRecyclerAdapter(private val usersList: Array<Profile>) :
+class UsersRecyclerAdapter() :
     RecyclerView.Adapter<UsersRecyclerAdapter.UsersViewHolder>() {
 
     lateinit var usersBinding: ItemUserProfileBinding
+
+    private val callBack = object : DiffUtil.ItemCallback<Profile>() {
+        override fun areItemsTheSame(oldItem: Profile, newItem: Profile): Boolean {
+            return oldItem.steamid == newItem.steamid
+        }
+
+        override fun areContentsTheSame(oldItem: Profile, newItem: Profile): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    val differ = AsyncListDiffer(this, callBack)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
         usersBinding =
@@ -19,11 +33,12 @@ class UsersRecyclerAdapter(private val usersList: Array<Profile>) :
     }
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
-        holder.bindElements(usersList[position])
+        val profile = differ.currentList[position]
+        holder.bindElements(profile)
     }
 
     override fun getItemCount(): Int {
-        return usersList.size
+        return differ.currentList.size
     }
 
     class UsersViewHolder(private val usersBinding: ItemUserProfileBinding) :

@@ -1,7 +1,6 @@
 package com.example.dota2statistics
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -20,12 +19,16 @@ class SelectUserFragment : Fragment(R.layout.fragment_select_user) {
 
         val args : SelectUserFragmentArgs by navArgs()
         val profilesList = args.user
-        Log.i("Profiles", "onViewCreated: ${profilesList[0].personaname} ================")
+        val recyclerAdapter = UsersRecyclerAdapter()
+        recyclerAdapter.differ.submitList(profilesList.toList())
+
 
         binding.usersRecycler.apply {
-            adapter = UsersRecyclerAdapter(profilesList)
+            adapter = recyclerAdapter
+
             layoutManager = LinearLayoutManager(activity)
         }
+
     }
 
 }

@@ -1,14 +1,12 @@
 package com.example.dota2statistics.domain.useCases
 
+
 import com.example.dota2statistics.PlayersRepositoryTestDouble
 import com.example.dota2statistics.domain.repository.PlayersRepository
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.runBlocking
-
-
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 class GetPlayerByIDUseCaseTest {
