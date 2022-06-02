@@ -53,5 +53,9 @@ iapp/src/main/java/com/example/dota2statistics/data/repository/datasourcesImpl/D
 Lapp/src/main/java/com/example/dota2statistics/data/models/byID/PlayerByID.kt,e\5\e56df4c3514609259dc5a76cf487e8774e6178ae
 í
 bapp/src/main/java/com/example/dota2statistics/data/models/byPersonaName/PlayerByPersonaNameItem.kt,f\e\fe080e441c5252d4f1213576ac3f3c2812b3341a
+ã
+[app/src/main/java/com/example/dota2statistics/presentation/viewmodels/EmptyHomeViewModel.kt,9\6\963272b45e96dd44748305433da4bc98b8ab5509
 è
 _app/src/main/java/com/example/dota2statistics/domain/useCases/GetPlayersByPersonaNameUseCase.kt,7\2\7264baef9f76a5da0d0815d8e8af8e389d29b7ef
+u
+Eapp/src/main/java/com/example/dota2statistics/UsersRecyclerAdapter.kt,2\2\222960043ebba8cbe098c0949ba70852434b20ed
