@@ -29,4 +29,4 @@ data class Profile(
     val profileurl: String,
     @SerializedName("steamid")
     val steamid: String
-): Parcelable, Serializable
+) : Parcelable, Serializable

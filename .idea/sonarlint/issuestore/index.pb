@@ -51,3 +51,9 @@ Bapp/src/main/java/com/example/dota2statistics/EmptyHomeFragment.kt,8\e\8ec59c9
 [app/src/main/java/com/example/dota2statistics/data/implementations/PlayersRepositoryImpl.kt,f\5\f5d22c427d251f1e72d8627a8b8b53c1ff11471a
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+u
+Eapp/src/main/java/com/example/dota2statistics/UsersRecyclerAdapter.kt,2\2\222960043ebba8cbe098c0949ba70852434b20ed
+s
+Capp/src/main/java/com/example/dota2statistics/SelectUserFragment.kt,c\f\cfcb3c6bbcdbf92f1db62029cf6506bd73b68c2c
