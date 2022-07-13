@@ -3,7 +3,6 @@ package com.example.dota2statistics
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,13 +13,12 @@ import com.example.dota2statistics.databinding.FragmentSelectUserBinding
 import com.example.dota2statistics.presentation.viewmodels.EmptyHomeViewModel
 import com.example.dota2statistics.presentation.viewmodels.EmptyHomeViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.Duration
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class SelectUserFragment : Fragment(R.layout.fragment_select_user) {
 
-    lateinit var binding: FragmentSelectUserBinding
+    private lateinit var binding: FragmentSelectUserBinding
 
     @Inject
     lateinit var emptyHomeViewModelFactory: EmptyHomeViewModelFactory
@@ -58,8 +56,8 @@ class SelectUserFragment : Fragment(R.layout.fragment_select_user) {
             }
             else -> {
                 emptyHomeViewModel.getPlayersListByName(userName)
-                emptyHomeViewModel.listOfPlayersByNameLiveData.observe(viewLifecycleOwner) { playersByName ->
-                    emptyHomeViewModel.getPlayersProfileByName(playersByName)
+                emptyHomeViewModel.listOfPlayersByNameLiveData.observe(viewLifecycleOwner) { playersByNameResponse ->
+                    emptyHomeViewModel.getPlayersProfileByName(playersByNameResponse)
                     emptyHomeViewModel.listOfProfilesByID.observe(viewLifecycleOwner) { profiles ->
                         if (profiles != null) {
                             launchRecycler(profiles)

@@ -3,7 +3,6 @@ package com.example.dota2statistics
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.navArgs
 import androidx.viewpager.widget.ViewPager
 import com.example.dota2statistics.databinding.ActivityUserTabbedInfoBinding
@@ -27,6 +26,6 @@ class UserTabbedInfoActivity : AppCompatActivity() {
 
         val args: UserTabbedInfoActivityArgs by navArgs()
         val profile = args.profile
-        Log.i("TAG", "onCreate: ${profile.personaname} ===============")
+        Log.i("TAG", "onCreate: ${profile.personaName} ===============")
     }
 }

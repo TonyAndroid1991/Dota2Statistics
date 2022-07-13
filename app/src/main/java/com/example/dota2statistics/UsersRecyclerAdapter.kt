@@ -16,7 +16,7 @@ class UsersRecyclerAdapter() :
 
     private val callBack = object : DiffUtil.ItemCallback<Profile>() {
         override fun areItemsTheSame(oldItem: Profile, newItem: Profile): Boolean {
-            return oldItem.steamid == newItem.steamid
+            return oldItem.steamId == newItem.steamId
         }
 
         override fun areContentsTheSame(oldItem: Profile, newItem: Profile): Boolean {
@@ -46,9 +46,9 @@ class UsersRecyclerAdapter() :
 
         fun bindElements(user: Profile) {
             usersBinding.apply {
-                userName.text = user.personaname
-                userId.text = user.steamid
-                Glide.with(itemView).load(user.avatarfull).into(userAvatar)
+                userName.text = user.personaName
+                userId.text = user.steamId
+                Glide.with(itemView).load(user.avatarFull).into(userAvatar)
             }
 
             usersBinding.root.setOnClickListener {

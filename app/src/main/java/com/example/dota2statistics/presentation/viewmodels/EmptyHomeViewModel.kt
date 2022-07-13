@@ -30,22 +30,20 @@ class EmptyHomeViewModel(
 
     fun getPlayersListByName(playerName: String) = viewModelScope.launch {
         val playersList = getPlayersByPersonaNameUseCase.getPlayersByName(playerName)
-        if (playersList != null) {
-            _listOfPlayersByNameLiveData.postValue(playersList)
-        }
+        _listOfPlayersByNameLiveData.postValue(playersList.data)
     }
 
     fun getPlayerProfileByID(playerID: Int) = viewModelScope.launch {
-        _playerByIdLiveData.postValue(getPlayerByIDUseCase.getPlayerById(playerID))
+        _playerByIdLiveData.postValue(getPlayerByIDUseCase.getPlayerById(playerID).data)
     }
 
-    fun getPlayersProfileByName(playersByName: List<PlayerByPersonaNameItem>?) =
+    fun getPlayersProfileByName(playersByName: List<PlayerByPersonaNameItem>) =
         viewModelScope.launch {
-            val playersProfileList: List<Profile>? = playersByName?.map { player ->
+            val playersProfileList: List<Profile> = playersByName.map { playerByName ->
                 async {
-                    getPlayerByIDUseCase.getPlayerById(player.accountId)
+                    getPlayerByIDUseCase.getPlayerById(playerByName.accountId).data
                 }
-            }?.awaitAll()?.filterNotNull()
+            }.awaitAll().filterNotNull()
             _listOfProfilesByID.postValue(playersProfileList)
         }
 }
