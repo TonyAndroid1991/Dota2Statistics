@@ -41,7 +41,7 @@ class UsersRecyclerAdapter() :
         return differ.currentList.size
     }
 
-    class UsersViewHolder(private val usersBinding: ItemUserProfileBinding) :
+    inner class UsersViewHolder(private val usersBinding: ItemUserProfileBinding) :
         RecyclerView.ViewHolder(usersBinding.root) {
 
         fun bindElements(user: Profile) {
@@ -50,7 +50,17 @@ class UsersRecyclerAdapter() :
                 userId.text = user.steamid
                 Glide.with(itemView).load(user.avatarfull).into(userAvatar)
             }
-        }
 
+            usersBinding.root.setOnClickListener {
+                onItemClickListener?.let {
+                    it(user)
+                }
+            }
+        }
+    }
+    private var onItemClickListener: ((Profile) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Profile) -> Unit) {
+        onItemClickListener = listener
     }
 }

@@ -8,9 +8,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import java.io.Serializable
 
-@Entity(
-    tableName = "profile"
-)
+@Entity(tableName = "profile")
 @Parcelize
 data class Profile(
     @PrimaryKey(autoGenerate = true)

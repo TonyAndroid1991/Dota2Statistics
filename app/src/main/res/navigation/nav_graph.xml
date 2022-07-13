@@ -22,5 +22,17 @@
         <argument
             android:name="user"
             app:argType="string" />
+        <action
+            android:id="@+id/action_selectUserFragment_to_userTabbedInfo"
+            app:destination="@id/userTabbedInfo" />
     </fragment>
+    <activity
+        android:id="@+id/userTabbedInfo"
+        android:name="com.example.dota2statistics.UserTabbedInfoActivity"
+        android:label="activity_user_tabbed_info"
+        tools:layout="@layout/activity_user_tabbed_info" >
+        <argument
+            android:name="profile"
+            app:argType="com.example.dota2statistics.data.models.byID.Profile" />
+    </activity>
 </navigation>
