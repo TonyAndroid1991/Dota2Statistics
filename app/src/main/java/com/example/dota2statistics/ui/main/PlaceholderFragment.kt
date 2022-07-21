@@ -1,17 +1,12 @@
 package com.example.dota2statistics.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
-import androidx.navigation.navArgs
-import com.example.dota2statistics.SelectUserFragmentArgs
-import com.example.dota2statistics.UserTabbedInfoActivityArgs
 import com.example.dota2statistics.databinding.FragmentUserTabbedInfoBinding
 
 /**

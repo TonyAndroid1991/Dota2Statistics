@@ -1,5 +1,6 @@
 package com.example.dota2statistics
 
+import Resource
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -14,18 +15,18 @@ import com.example.dota2statistics.databinding.FragmentSelectUserBinding
 import com.example.dota2statistics.presentation.viewmodels.EmptyHomeViewModel
 import com.example.dota2statistics.presentation.viewmodels.EmptyHomeViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.Duration
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class SelectUserFragment : Fragment(R.layout.fragment_select_user) {
 
-    lateinit var binding: FragmentSelectUserBinding
+    private lateinit var binding: FragmentSelectUserBinding
 
     @Inject
     lateinit var emptyHomeViewModelFactory: EmptyHomeViewModelFactory
     private lateinit var emptyHomeViewModel: EmptyHomeViewModel
     private lateinit var recyclerAdapter: UsersRecyclerAdapter
+    private var isLoading = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,19 +51,53 @@ class SelectUserFragment : Fragment(R.layout.fragment_select_user) {
             TextUtils.isDigitsOnly(userName) -> {
                 emptyHomeViewModel.getPlayerProfileByID(userName.toInt())
                 emptyHomeViewModel.playerByIDLiveData.observe(viewLifecycleOwner) { profile ->
-                    if (profile != null) {
-                        val listOfProfiles = listOf(profile)
-                        launchRecycler(listOfProfiles)
+                    when (profile) {
+                        is Resource.Loading -> {
+                            showProgressBar()
+                        }
+                        is Resource.Success -> {
+                            profile.data?.let {
+                                hideProgressBar()
+                                val listOfProfiles = listOf(it)
+                                launchRecycler(listOfProfiles)
+                            }
+                        }
+                        is Resource.Error -> {
+                            hideProgressBar()
+                            profile.message.let {
+                                Toast.makeText(
+                                    activity,
+                                    "An error occurred : $it",
+                                    Toast.LENGTH_LONG
+                                )
+                                    .show()
+                            }
+                        }
                     }
                 }
             }
             else -> {
                 emptyHomeViewModel.getPlayersListByName(userName)
-                emptyHomeViewModel.listOfPlayersByNameLiveData.observe(viewLifecycleOwner) { playersByName ->
-                    emptyHomeViewModel.getPlayersProfileByName(playersByName)
-                    emptyHomeViewModel.listOfProfilesByID.observe(viewLifecycleOwner) { profiles ->
-                        if (profiles != null) {
-                            launchRecycler(profiles)
+                emptyHomeViewModel.listOfPlayersByNameLiveData.observe(viewLifecycleOwner) { playersByNameResponse ->
+
+                    when (playersByNameResponse) {
+                        is Resource.Loading -> {
+                            showProgressBar()
+                        }
+                        is Resource.Success -> {
+                            playersByNameResponse.data?.let { playersList ->
+                                emptyHomeViewModel.getPlayersProfileByName(playersList)
+                                emptyHomeViewModel.listOfProfilesByID.observe(viewLifecycleOwner) { playersProfileList ->
+                                    when (playersProfileList) {
+                                        is Resource.Success -> {
+                                            playersProfileList.data?.let {
+                                                hideProgressBar()
+                                                launchRecycler(it)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -76,5 +111,15 @@ class SelectUserFragment : Fragment(R.layout.fragment_select_user) {
             adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(activity)
         }
+    }
+
+    private fun showProgressBar() {
+        isLoading = true
+        binding.progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        isLoading = false
+        binding.progressBar.visibility = View.GONE
     }
 }

@@ -16,17 +16,17 @@ data class Profile(
     @SerializedName("avatar")
     val avatar: String,
     @SerializedName("avatarfull")
-    val avatarfull: String,
+    val avatarFull: String,
     @SerializedName("avatarmedium")
-    val avatarmedium: String,
+    val avatarMedium: String,
     @SerializedName("cheese")
     val cheese: Int,
     @SerializedName("personaname")
-    val personaname: String,
+    val personaName: String,
     @SerializedName("plus")
     val plus: Boolean,
     @SerializedName("profileurl")
-    val profileurl: String,
+    val profileUrl: String,
     @SerializedName("steamid")
-    val steamid: String
+    val steamId: String
 ) : Parcelable, Serializable
