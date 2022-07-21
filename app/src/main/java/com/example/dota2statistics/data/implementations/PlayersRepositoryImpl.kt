@@ -19,9 +19,11 @@ class PlayersRepositoryImpl(
     private suspend fun getAndParsePlayerFromAPI(playerName: String): Resource<List<PlayerByPersonaNameItem>> {
         val response = dotaRemoteDataSource.getPlayerByPersonaName(playerName)
         if (response.isSuccessful) {
-            response.body()?.let { Resource.Success(it) }
+            response.body()?.let {
+                return Resource.Success(it)
+            }
         }
-          return  Resource.Error(response.message())
+        return Resource.Error(response.message())
     }
 
     override suspend fun getPlayerByID(playerID: Int): Resource<Profile> {
@@ -32,7 +34,7 @@ class PlayersRepositoryImpl(
         val response = dotaRemoteDataSource.getPlayerByID(playerID)
         if (response.isSuccessful) {
             response.body()?.let {
-                it.profile
+                return Resource.Success(it.profile)
             }
         }
         return Resource.Error(response.message())

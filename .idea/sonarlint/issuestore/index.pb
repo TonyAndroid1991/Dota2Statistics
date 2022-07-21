@@ -11,8 +11,6 @@ Xapp/src/main/java/com/example/dota2statistics/presentation/di/PlayersRepository
 Oapp/src/main/java/com/example/dota2statistics/presentation/di/UseCasesModule.kt,d\0\d0c865da99fa68f44b32d5a9c50d6697fc3d812d
 è
 _app/src/main/java/com/example/dota2statistics/data/models/byPersonaName/PlayersByPersonaName.kt,3\5\35170ac264feed052def137bf27549f1c9bff285
-á
-Wapp/src/main/java/com/example/dota2statistics/presentation/di/EmptyHomeFactoryModule.kt,8\a\8a172d1ff447cf947245319284050222387af574
 z
 Japp/src/main/java/com/example/dota2statistics/presentation/di/NetModule.kt,0\4\04b5d42bac585a5ead441c4b26bf6b7ed37dfd83
 m
@@ -23,17 +21,17 @@ r
 Bapp/src/main/java/com/example/dota2statistics/data/db/ProfileDB.kt,7\0\70a9cfd4f423eb2ff3f49909f0ef036fbb56066a
 p
 @app/src/main/java/com/example/dota2statistics/data/db/DotaDAO.kt,5\c\5c5866c269d6bf786f0345a823fb14766568b856
-í
-bapp/src/main/java/com/example/dota2statistics/presentation/viewmodels/EmptyHomeViewModelFactory.kt,b\7\b728dc7e75a39cd8e98af00b64f4f0a857676882
-ô
-iapp/src/main/java/com/example/dota2statistics/data/repository/datasourcesImpl/DotaRemoteDataSourceImpl.kt,1\a\1a2533cb034c97922f50d99d5d00a114a2ce5633
 |
 Lapp/src/main/java/com/example/dota2statistics/data/models/byID/PlayerByID.kt,e\5\e56df4c3514609259dc5a76cf487e8774e6178ae
 í
 bapp/src/main/java/com/example/dota2statistics/data/models/byPersonaName/PlayerByPersonaNameItem.kt,f\e\fe080e441c5252d4f1213576ac3f3c2812b3341a
-r
-Bapp/src/main/java/com/example/dota2statistics/EmptyHomeFragment.kt,8\e\8ec59c95f85c505756a51022deb8a3d42459dde6
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+y
+Iapp/src/main/java/com/example/dota2statistics/data/models/byID/Profile.kt,5\5\55e308704872a23e1681df172a3b3f50ff796db8
+Ñ
+Tapp/src/main/java/com/example/dota2statistics/domain/repository/PlayersRepository.kt,7\e\7edab8f2451e1ed4d77f8f618682f3d03af7ed85
+Ö
+Uapp/src/main/java/com/example/dota2statistics/domain/useCases/GetPlayerByIDUseCase.kt,c\2\c26e7f3bffdb1b97283a96e4eb682f0ea163b36f
