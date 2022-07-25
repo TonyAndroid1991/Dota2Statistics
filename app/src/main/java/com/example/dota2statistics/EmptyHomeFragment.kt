@@ -12,6 +12,10 @@ class EmptyHomeFragment : Fragment(R.layout.empty_home_fragment) {
 
     private lateinit var binding: EmptyHomeFragmentBinding
 
+    companion object {
+        const val NAVIGATION_PATH = "navigationPath"
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -27,11 +31,11 @@ class EmptyHomeFragment : Fragment(R.layout.empty_home_fragment) {
         val userName: String = binding.userInput.text.toString()
         when {
             userName.isEmpty() -> {
-                Toast.makeText(context, "You must input your User Name or User ID", LENGTH_LONG)
+                Toast.makeText(context, getString(R.string.text_no_user_name_or_user_id), LENGTH_LONG)
                     .show()
             }
             else -> {
-                val bundle: Bundle = Bundle().apply { putSerializable("user", userName) }
+                val bundle: Bundle = Bundle().apply { putSerializable(NAVIGATION_PATH, userName) }
                 findNavController().navigate(R.id.action_emptyHomeFragment_to_selectUserFragment, bundle)
             }
         }

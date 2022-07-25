@@ -13,4 +13,6 @@
     <string name="tab_text_8">Tab 8</string>
     <string name="tab_text_9">Tab 9</string>
     <string name="tab_text_10">Tab 10</string>
+    <string name="text_no_user_name_or_user_id">You must input your User Name or User ID</string>
+    <string name="generic_error_text">An error has occurred %s</string>
 </resources>
