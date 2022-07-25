@@ -13,9 +13,11 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 
 
 @RunWith(AndroidJUnit4::class)
+@Config(manifest= Config.NONE)
 class EmptyHomeViewModelTest {
 
     /**Esta regla ejecuta todos los trabajos en background en el mismo hilo
@@ -24,8 +26,8 @@ class EmptyHomeViewModelTest {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
 
-    private lateinit var sut: EmptyHomeViewModel
-    private lateinit var playersRepositoryDouble: PlayersRepositoryDouble
+     lateinit var sut: EmptyHomeViewModel
+     lateinit var playersRepositoryDouble: PlayersRepositoryDouble
 
     @Before
     fun setUp() {
@@ -43,17 +45,15 @@ class EmptyHomeViewModelTest {
     @Test
     fun `check liveData is updated with same ID`() {
         sut.getPlayerProfileByID(12345)
-        var expected = sut.playerByIDLiveData.getOrAwaitValue().data
+        val expected = sut.playerByIDLiveData.getOrAwaitValue().data
         assertThat(expected?.accountId).isEqualTo(12345)
     }
 
     @Test
     fun `check liveData is updated with list of players with names`() = runBlocking{
-        var listOfPlayersToCompare = playersRepositoryDouble.getPlayersByPersonaName("atila").data
+        val listOfPlayersToCompare = playersRepositoryDouble.getPlayersByPersonaName("atila").data
         sut.getPlayersListByName("atila")
-        var expected = sut.listOfPlayersByNameLiveData.getOrAwaitValue().data
-
-        //assertThat(listOfPlayersToCompare?.size).isEqualTo(expected.size)
+        val expected = sut.listOfPlayersByNameLiveData.getOrAwaitValue().data
         assertThat(listOfPlayersToCompare?.get(0)?.personaname).isEqualTo(expected?.get(0)?.personaname)
     }
 }

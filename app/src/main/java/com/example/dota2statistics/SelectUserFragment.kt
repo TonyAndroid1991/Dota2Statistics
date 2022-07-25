@@ -1,6 +1,7 @@
 package com.example.dota2statistics
 
 import Resource
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -37,7 +38,7 @@ class SelectUserFragment : Fragment(R.layout.fragment_select_user) {
             ViewModelProvider(this, emptyHomeViewModelFactory).get(EmptyHomeViewModel::class.java)
 
         val args: SelectUserFragmentArgs by navArgs()
-        val userName = args.user
+        val userName = args.navigationPath
         recyclerAdapter = UsersRecyclerAdapter()
         recyclerAdapter.setOnItemClickListener {
             val bundle = Bundle().apply { putSerializable("profile", it) }
@@ -66,11 +67,9 @@ class SelectUserFragment : Fragment(R.layout.fragment_select_user) {
                             hideProgressBar()
                             profile.message.let {
                                 Toast.makeText(
-                                    activity,
-                                    "An error occurred : $it",
+                                    activity, getString(R.string.generic_error_text).format(it),
                                     Toast.LENGTH_LONG
-                                )
-                                    .show()
+                                ).show()
                             }
                         }
                     }
