@@ -12,7 +12,7 @@ import com.example.dota2statistics.databinding.ItemUserProfileBinding
 class UsersRecyclerAdapter() :
     RecyclerView.Adapter<UsersRecyclerAdapter.UsersViewHolder>() {
 
-    lateinit var usersBinding: ItemUserProfileBinding
+    private lateinit var usersBinding: ItemUserProfileBinding
 
     private val callBack = object : DiffUtil.ItemCallback<Profile>() {
         override fun areItemsTheSame(oldItem: Profile, newItem: Profile): Boolean {
