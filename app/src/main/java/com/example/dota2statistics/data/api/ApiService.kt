@@ -13,7 +13,7 @@ interface ApiService {
     @GET("search")
     suspend fun getPlayerByPersonaName(
         @Query("q") q: String,
-        @Query("api_key") apiKey: String = BuildConfig. API_KEY
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Response<List<PlayerByPersonaNameItem>>
 
     @GET("players/{account_id}")
