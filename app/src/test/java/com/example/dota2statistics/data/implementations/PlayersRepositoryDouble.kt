@@ -40,5 +40,4 @@ class PlayersRepositoryDouble : PlayersRepository {
     override fun getPlayersFromDB(): Profile {
         TODO("Not yet implemented")
     }
-
 }
